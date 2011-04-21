@@ -1,0 +1,3 @@
+This project aims to use Arduino Lilypad to monitor light levels via a light sensor, and if a certain threshold is met, activate LEDs. The initial implementation will be on to a knitted scarf, with Lilypad components added via conductive thread, as no suitable conductive yarn has been found or sourced.
+
+
