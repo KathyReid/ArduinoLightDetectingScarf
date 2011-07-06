@@ -19,6 +19,7 @@
 
   VERSIONS
   0.1 -  21 Apr 11 - Initial pseudocode
+  0.2 -  07 Jul 11 - Initial revision
   
   
   Created by Kathy Reid - @KathyReid on GitHub, Twitter etc
@@ -26,25 +27,62 @@
   
  */
 
-// initialise variables for the light sensor and for the LEDs here
+/* Initialise variables */
+
 int ledPin =  13;    // LED connected to digital pin 13
+int ledPin1 = 6;
+int ledPin2 = 7;
+int ledPin3 = 8;
+int ledPin4 = 9;
+int ledPin5 = 10;
 
-// The setup() method runs once, when the sketch starts
+int sensorPin = 0; 	// light sensor is connected to analog pin 0
+int sensorValue = 0; 	// variable to store the value coming from the sensor
+int sensorFrequency = 100; // number of milliseconds between sensor readings
 
-void setup()   {           
-  // initialise the light sensor as input and the LEDs as output  
-  // initialize the digital pin as an output:
-  pinMode(ledPin, OUTPUT);     
-}
+int lightThreshold = 10; // threshold below which light turns on 
 
-// the loop() method runs over and over again,
-// as long as the Arduino has power
+void setup() 	 
+{ 	 
+         pinMode(ledPin, OUTPUT); 	// sets the ledPin to be an output
+         
+         pinMode(ledPin1, OUTPUT); 	// sets the ledPin to be an output
+         pinMode(ledPin2, OUTPUT); 	// sets the ledPin to be an output
+         pinMode(ledPin3, OUTPUT); 	// sets the ledPin to be an output
+         pinMode(ledPin4, OUTPUT); 	// sets the ledPin to be an output
+         pinMode(ledPin5, OUTPUT); 	// sets the ledPin to be an output
+         
+         Serial.begin(9600); 	//initialize the serial port
+         
+} 	 
+  	 
+void loop() 	// run over and over again
+{ 	 
+          sensorValue = analogRead(sensorPin); 	// read the value from the sensor
+          Serial.println(sensorValue); 	// send that value to the computer
+          
+          /* Turn on the LEDs if the light sensor drops below threshold */
+          if (sensorValue <= lightThreshold){
+            digitalWrite(ledPin, HIGH); 	// turn the LED on
+            
+            digitalWrite(ledPin1, HIGH); 	// turn the LED on
+            digitalWrite(ledPin2, HIGH); 	// turn the LED on
+            digitalWrite(ledPin3, HIGH); 	// turn the LED on
+            digitalWrite(ledPin4, HIGH); 	// turn the LED on
+            digitalWrite(ledPin5, HIGH); 	// turn the LED on
+          }
+          else // turn the LEDs off
+          {
+            digitalWrite(ledPin, LOW); 	// turn the LED off
+            
+            digitalWrite(ledPin1, LOW); 	// turn the LED off
+            digitalWrite(ledPin2, LOW); 	// turn the LED off
+            digitalWrite(ledPin3, LOW); 	// turn the LED off
+            digitalWrite(ledPin4, LOW); 	// turn the LED off
+            digitalWrite(ledPin5, LOW); 	// turn the LED off
+          }
+          
+          /* Delay for defined delay period */
+          delay(sensorFrequency); 
+} 
 
-void loop()                     
-{
-  read temperature in from light sensor
-  evaluate temperature
-  if temp > threshold
-    trigger LEDs (or pattern of LEDs
-  endif
-}
